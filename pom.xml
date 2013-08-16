@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://maven.apache.org/POM/4.0.0
+	http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tools</groupId>
+    <artifactId>as3-object-pool</artifactId>
+    <version>1.0.0</version>
+    <packaging>swc</packaging>
+
+    <name>as3-object-pool</name>
+    <url>https://github.com/dartemyev/as3-object-pool</url>
+
+    <developers>
+        <developer>
+            <id>dimas_art</id>
+            <name>Dmytro Artemiev</name>
+            <email>dimas.inc@gmail.com</email>
+            <url>http://github.com/dartemyev</url>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <properties>
+        <flexmojos.version>4.2-beta</flexmojos.version>
+        <flex.sdk.version>4.6.b.23201</flex.sdk.version>
+        <flexunit.version>4.1.0-RC1.61</flexunit.version>
+        <maven.version>3.0.3</maven.version>
+    </properties>
+
+    <issueManagement>
+        <url>https://github.com/dartemyev/as3-object-pool/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <repositories>
+        <repository>
+            <id>flex-mojos-repository</id>
+            <url>http://repository.sonatype.org/content/groups/flexgroup</url>
+        </repository>
+        <repository>
+            <id>yoolab.org-releases</id>
+            <url>http://projects.yoolab.org/maven/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>yoolab.org-snapshots</id>
+            <url>http://projects.yoolab.org/maven/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>flex-mojos-repository</id>
+            <url>http://repository.sonatype.org/content/groups/flexgroup</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>tests</testSourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.flexmojos</groupId>
+                <artifactId>flexmojos-maven-plugin</artifactId>
+                <version>${flexmojos.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <localesCompiled>
+                        <locale>en_US</locale>
+                    </localesCompiled>
+                    <debug>true</debug>
+                    <parameters>
+                    </parameters>
+                    <storepass/>
+                    <compilerWarnings>
+                        <warn-no-constructor>false</warn-no-constructor>
+                        <warn-duplicate-variable-def>false</warn-duplicate-variable-def>
+                    </compilerWarnings>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>com.adobe.flex</groupId>
+                        <artifactId>compiler</artifactId>
+                        <version>${flex.sdk.version}</version>
+                        <type>pom</type>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>flex-framework</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>pom</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.sonatype.flexmojos</groupId>
+            <artifactId>flexmojos-unittest-support</artifactId>
+            <version>${flexmojos.version}</version>
+            <type>swc</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flexunit</groupId>
+            <artifactId>flexunit</artifactId>
+            <version>${flexunit.version}</version>
+            <type>swc</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
