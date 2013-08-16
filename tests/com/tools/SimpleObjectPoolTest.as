@@ -60,13 +60,32 @@ package com.tools
             Assert.assertEquals(pool.allocatedCount, 1);
             Assert.assertEquals(pool.freedCount, 0);
 
-            pool.free(sprite);
+            Assert.assertTrue(pool.free(sprite));
             Assert.assertEquals(pool.allocatedCount, 1);
             Assert.assertEquals(pool.freedCount, 1);
 
             sprite = pool.allocate();
             Assert.assertNotNull(sprite);
             Assert.assertEquals(sprite.name, "sprite");
+            Assert.assertEquals(pool.allocatedCount, 1);
+            Assert.assertEquals(pool.freedCount, 0);
+        }
+
+        [Test]
+        /**
+         * Test case :
+         *   - create object without using pool
+         *   - free this object to pool
+         */
+        public function testDisposeNotAllocatedObject():void
+        {
+            var sprite:Sprite = new Sprite();
+            Assert.assertFalse(pool.free(sprite));
+            Assert.assertEquals(pool.allocatedCount, 0);
+            Assert.assertEquals(pool.freedCount, 0);
+
+            sprite = pool.allocate();
+            Assert.assertNotNull(sprite);
             Assert.assertEquals(pool.allocatedCount, 1);
             Assert.assertEquals(pool.freedCount, 0);
         }

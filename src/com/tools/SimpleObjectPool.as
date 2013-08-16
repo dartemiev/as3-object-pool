@@ -11,8 +11,14 @@ package com.tools
          */
         protected var freeObjects:Vector.<Object>;
 
+        /**
+         * The map of allocated object to check them in the free phase.
+         */
         protected var allocatedObjects:Dictionary;
 
+        /**
+         * The number of allocated objects.
+         */
         private var _allocatedCount:int;
 
         /**
@@ -42,9 +48,14 @@ package com.tools
         /**
          * @inheritDoc
          */
-        public function free(object:Object):void
+        public function free(object:Object):Boolean
         {
-            freeObjects[freeObjects.length] = object;
+            if (isRegistered(object) == true)
+            {
+                freeObjects[freeObjects.length] = object;
+                return true;
+            }
+            return false;
         }
 
         /**
@@ -57,6 +68,16 @@ package com.tools
             allocatedObjects[instance] = instance;
             _allocatedCount++;
             return instance;
+        }
+
+        /**
+         * Returns allocation state of object.
+         * @param object Checking object.
+         * @return <code>true</code> if this object was allocated by pool.
+         */
+        private function isRegistered(object:Object):Boolean
+        {
+            return allocatedObjects[object] != null;
         }
 
         /**

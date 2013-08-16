@@ -12,7 +12,7 @@ package com.tools
          * Frees object to re-use it in next allocation phase.
          * @param object The instance of object to free it for re-use in next allocation phase.
          */
-        function free(object:Object):void;
+        function free(object:Object):Boolean;
 
         /**
          * Returns number of objects free to use in next allocation phase.
